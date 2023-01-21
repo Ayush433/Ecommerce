@@ -5,15 +5,17 @@ import Home from "./Pages/Home";
 import Login from "./Pages/LogIn";
 import SignUp from "./Pages/SignUp";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
 
 const queryClient = new QueryClient();
 const App = () => {
+  const [search, setSearch] = useState("");
   return (
     <QueryClientProvider client={queryClient}>
       <div>
+        <Navbar search={search} setSearch={setSearch} />
         <Routes>
-          {/* <Route path="*" element={<Navbar />} /> */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home search={search} />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
         </Routes>

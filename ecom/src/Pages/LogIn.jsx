@@ -39,7 +39,7 @@ function TodoList() {
 
   return (
     <>
-      <Navbar />
+
       <div className="App bg-yellow-100 p-[3%]">
         <button
           onClick={() => setModal(true)}

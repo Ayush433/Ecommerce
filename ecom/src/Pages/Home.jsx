@@ -33,7 +33,7 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
+      {" "}
       <input
         type="text"
         placeholder="Enter Here"
@@ -43,7 +43,6 @@ const Home = () => {
           setSearch(e.target.value);
         }}
       />
-
       <div className="cards">
         {searchResults.length > 0 && search ? (
           <>
