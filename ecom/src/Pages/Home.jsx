@@ -47,7 +47,9 @@ const Home = ({ search }) => {
       <div className="cards">
         {searchResults.length > 0 && search ? (
           <>
-            <h1 className="">Search results for "{search}"</h1>
+            <h1 className=" bg-black text-white">
+              Search results for "{search}"
+            </h1>
             {searchResults.map((result) => (
               <Product {...result} key={result.id} />
             ))}

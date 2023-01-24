@@ -13,17 +13,24 @@ import LoginForm from "./Pages/LoginForm";
 const queryClient = new QueryClient();
 const App = () => {
   const [search, setSearch] = useState("");
+  let access_token = localStorage.getItem("access_token");
+  const [user, setUser] = useState(access_token);
   return (
     <QueryClientProvider client={queryClient}>
       <div>
-        <Navbar search={search} setSearch={setSearch} />
+        <Navbar
+          search={search}
+          setSearch={setSearch}
+          user={user}
+          setUser={setUser}
+        />
         <Routes>
           <Route path="/" element={<Home search={search} />} />
           <Route path="logins" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="demo" element={<Demo />} />
           <Route path="sign" element={<Sign />} />
-          <Route path="login" element={<LoginForm />} />
+          <Route path="login" element={<LoginForm setUser={setUser} />} />
         </Routes>
       </div>
     </QueryClientProvider>

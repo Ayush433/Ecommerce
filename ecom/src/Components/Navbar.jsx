@@ -2,9 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = ({ search, setSearch }) => {
-  let access_token = localStorage.getItem("access_token");
-  const [user, setUser] = useState(access_token);
+const Navbar = ({ search, setSearch, setUser, user }) => {
   return (
     <div>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
@@ -71,7 +69,7 @@ const Navbar = ({ search, setSearch }) => {
                   Home
                 </Link>
               </li>
-              {!access_token && (
+              {!user && (
                 <>
                   <li>
                     <Link

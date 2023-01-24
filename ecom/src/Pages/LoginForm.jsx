@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../Utilis/Error";
 // import ErrorMessage from "../component/ErrorMessage";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const navigate = useNavigate();
 
   const [error, setError] = useState({
@@ -47,8 +47,11 @@ const LoginForm = () => {
 
         .then((res) => {
           //   navigate("/login");
+
           navigate("/");
+
           localStorage.setItem("access_token", res.data.access_token);
+          props.setUser(true);
         })
         .catch((err) => {
           console.log(err);
