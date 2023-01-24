@@ -6,6 +6,8 @@ import Login from "./Pages/LogIn";
 import SignUp from "./Pages/SignUp";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
+import Demo from "./Pages/Demo";
+import Sign from "./Pages/Sign";
 
 const queryClient = new QueryClient();
 const App = () => {
@@ -18,6 +20,8 @@ const App = () => {
           <Route path="/" element={<Home search={search} />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
+          <Route path="demo" element={<Demo />} />
+          <Route path="sign" element={<Sign />} />
         </Routes>
       </div>
     </QueryClientProvider>

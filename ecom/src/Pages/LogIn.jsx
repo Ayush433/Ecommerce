@@ -15,7 +15,7 @@ function TodoList() {
       .required("Required")
       .min(5, "Too Short")
       .max(10, "Too Long"),
-    email: Yup.string().required("Required").email(),
+    email: Yup.string().required("Required").email(""),
   });
   const formik = useFormik({
     initialValues: {
@@ -39,7 +39,6 @@ function TodoList() {
 
   return (
     <>
-
       <div className="App bg-yellow-100 p-[3%]">
         <button
           onClick={() => setModal(true)}

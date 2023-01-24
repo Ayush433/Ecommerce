@@ -5,9 +5,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-const Home = () => {
+const Home = ({ search }) => {
   const [product, setProduct] = useState([]);
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   const { isLoading, isError } = useQuery(
@@ -33,7 +33,7 @@ const Home = () => {
 
   return (
     <>
-      {" "}
+      {/* {" "}
       <input
         type="text"
         placeholder="Enter Here"
@@ -42,11 +42,12 @@ const Home = () => {
         onChange={(e) => {
           setSearch(e.target.value);
         }}
-      />
+      /> */}
+
       <div className="cards">
         {searchResults.length > 0 && search ? (
           <>
-            <h1>Search results for "{search}"</h1>
+            <h1 className="">Search results for "{search}"</h1>
             {searchResults.map((result) => (
               <Product {...result} key={result.id} />
             ))}
