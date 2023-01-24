@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../Utilis/Error";
 // import ErrorMessage from "../component/ErrorMessage";
 
-const Sign = () => {
+const LoginForm = () => {
   const navigate = useNavigate();
 
   const [error, setError] = useState({
@@ -22,45 +22,36 @@ const Sign = () => {
   // const [name, setname] = useState("");
 
   const [data, setData] = useState({
-    name: "fasdf",
     email: "em@easdfm.com",
     password: "password",
-    role: "buyer",
   });
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    let { name, email, password, role } = data;
+    let { email, password } = data;
 
     let validation = true;
 
     let err = {};
-    if (!name) {
-      err.name = "Required";
-    }
     if (!email) {
       err.email = "Required";
     }
 
     if (Object.entries(err).length == 0) {
       axios
-        .post(`${import.meta.env.VITE_APP_SERVER_DOMAIN}users/signup`, {
-          name,
+        .post(`${import.meta.env.VITE_APP_SERVER_DOMAIN}users/login`, {
           email,
           password,
-          role,
         })
 
         .then((res) => {
           //   navigate("/login");
+          navigate("/");
+          localStorage.setItem("access_token", res.data.access_token);
         })
         .catch((err) => {
           console.log(err);
-          // setError({
-          //     email: "alerdy."
-          // })
-          //   setError(err.response.data.errors);
         });
     } else {
       setError(err);
@@ -94,30 +85,8 @@ const Sign = () => {
         onSubmit={handleSubmit}
         className="mt-7 bg-orange-300 rounded-[20px] p-[50px]"
       >
-        <div className="relative z-0 w-full mb-6 group">
-          <label
-            for="floating_first_name"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            First name
-          </label>
-          <input
-            type="text"
-            name="name"
-            value={data.name}
-            onChange={handleChange}
-            className="block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-xl"
-            placeholder=""
-          />
-          {error.name && <ErrorMessage msg={error.name} />}
-        </div>
         <div class="form-group">
-          <label
-            for="floating_email"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Email address
-          </label>
+          <label for="">Email</label>
           <input
             type="email"
             name="email"
@@ -143,25 +112,6 @@ const Sign = () => {
             className="block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-xl"
             placeholder=""
           />
-        </div>
-        <div class="form-group">
-          <label for="">Role</label>
-          <select
-            className="block py-2.5 px-0 w-full  text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-xl"
-            name="role"
-            aria-label="Default select example"
-            value={data.role}
-            onChange={handleChange}
-          >
-            <option value="">Open this select menu</option>
-            <option value="buyer">Buyer</option>
-            <option value="seller">Seller</option>
-          </select>
-          {/* {
-                        error.find(el => el.param == "role")
-                        &&
-                        <ErrorMessage msg={error.find(el => el.param == "role").msg} />
-                    } */}
         </div>
 
         <button
@@ -199,4 +149,4 @@ erros[0]["param"] = errros[0].msg
 }
 */
 
-export default Sign;
+export default LoginForm;

@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import Demo from "./Pages/Demo";
 import Sign from "./Pages/Sign";
+import LoginForm from "./Pages/LoginForm";
 
 const queryClient = new QueryClient();
 const App = () => {
@@ -18,10 +19,11 @@ const App = () => {
         <Navbar search={search} setSearch={setSearch} />
         <Routes>
           <Route path="/" element={<Home search={search} />} />
-          <Route path="login" element={<Login />} />
+          <Route path="logins" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="demo" element={<Demo />} />
           <Route path="sign" element={<Sign />} />
+          <Route path="login" element={<LoginForm />} />
         </Routes>
       </div>
     </QueryClientProvider>

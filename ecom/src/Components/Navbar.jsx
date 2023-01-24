@@ -1,7 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = ({ search, setSearch }) => {
+  let access_token = localStorage.getItem("access_token");
+  const [user, setUser] = useState(access_token);
   return (
     <div>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
@@ -16,13 +19,21 @@ const Navbar = ({ search, setSearch }) => {
               Shop Me
             </span>
           </Link>
+          {user && (
+            <>
+              <button
+                onClick={() => {
+                  localStorage.removeItem("access_token");
+                  setUser(null);
+                }}
+                type="button"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Logout
+              </button>
+            </>
+          )}
           <div className="flex md:order-2">
-            <button
-              type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Free Registered
-            </button>
             <button
               data-collapse-toggle="navbar-cta"
               type="button"
@@ -60,22 +71,27 @@ const Navbar = ({ search, setSearch }) => {
                   Home
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/login"
-                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/sign"
-                  className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  SignUp
-                </Link>
-              </li>
+              {!access_token && (
+                <>
+                  <li>
+                    <Link
+                      to="/login"
+                      className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/sign"
+                      className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      SignUp
+                    </Link>
+                  </li>
+                </>
+              )}
+
               <li>
                 {" "}
                 <Link
