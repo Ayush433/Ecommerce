@@ -83,7 +83,6 @@ const LoginForm = (props) => {
 
   return (
     <div className=" ">
-      ENV : {import.meta.env.VITE_APP_SERVER_DOMAIN}
       <form
         onSubmit={handleSubmit}
         className="mt-7 bg-orange-300 rounded-[20px] p-[50px]"
