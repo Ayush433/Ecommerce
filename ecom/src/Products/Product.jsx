@@ -34,14 +34,13 @@ const Product = () => {
           />
         </div>
       </div>
-      <div className="col-span-3 bg-right-side mt-[200px]">
-        <h2 className="text-xl font-medium">{product.title}</h2>
-        <p className="text-base font-medium">{product.price}</p>
-        <p className="text-base">{product.category}</p>
-        <p className="text-base">{product.description}</p>
+      <div className="col-span-3 bg-gray-200 p-4 mt-[100px]">
+        <h2 className="text-2xl text-gray-800 font-medium">{product.title}</h2>
+        <p className="text-base text-gray-600 font-medium">{product.price}</p>
+        <p className="text-base text-gray-600">{product.category}</p>
+        <p className="text-base text-gray-600">{product.description}</p>
         <div>
           <p> rating </p>
-          <div>{/* Add star rating component here */}</div>
         </div>
       </div>
     </div>
